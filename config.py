@@ -1,7 +1,7 @@
 import os
 
 # Directories
-ROOT_DIR = os.path.abspath(__file__)
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 GRAPHICS_DIR = os.path.join(ROOT_DIR, "resources", "graphics")
 
 # Proportions
