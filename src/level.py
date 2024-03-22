@@ -1,5 +1,6 @@
 import pygame as pg
 from config import *
+from src.characters.player import Player
 
 class Level():
     def __init__(self):
@@ -10,8 +11,14 @@ class Level():
         # Sprite groups
         self.all_sprites = pg.sprite.Group()
 
+        # Setup level
+        self.setup()
+
+    def setup(self):
+        self.player = Player((640, 360), self.all_sprites)
+
     def run(self, dt):
-        
+
         # Draw on screen and update sprites
         self.display_surface.fill("purple")
         self.all_sprites.draw(self.display_surface)
