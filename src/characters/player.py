@@ -5,8 +5,13 @@ from config import *
 class Player(pg.sprite.Sprite):
     def __init__(self, pos, group):
         super().__init__(group)
+
+        # Sprite
         self.image = pg.image.load(os.path.join(GRAPHICS_DIR, "characters", "player-character-prototype.png")).convert_alpha()
         self.rect = self.image.get_rect(center = pos)
+
+        # Movement
+        self.direction = pg.math.Vector2()
 
     def update(self, dt):
         self.input()
@@ -15,11 +20,17 @@ class Player(pg.sprite.Sprite):
         keys = pg.key.get_pressed()
 
         if keys[pg.K_UP] or keys[pg.K_w]:
-            print("up")
+            self.direction.y = -1
         elif keys[pg.K_DOWN] or keys[pg.K_s]:
-            print("down")
+            self.direction.y = 1
+        else:
+            self.direction.y = 0
 
         if keys[pg.K_LEFT] or keys[pg.K_a]:
-            print("left")
+            self.direction.x = -1
         elif keys[pg.K_RIGHT] or keys[pg.K_d]:
-            print("right")
+            self.direction.x = 1
+        else:
+            self.direction.x = 0
+
+        print(self.direction)
