@@ -22,4 +22,4 @@ class Level():
         # Draw on screen and update sprites
         self.display_surface.fill("purple")
         self.all_sprites.draw(self.display_surface)
-        self.all_sprites.update()
+        self.all_sprites.update(dt)
