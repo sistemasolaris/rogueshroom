@@ -2,7 +2,6 @@ import sys
 import pygame as pg
 from config import *
 from src.level import Level
-from src.characters.player import Player
 
 class Game:
     def __init__(self):
@@ -21,7 +20,7 @@ class Game:
     def run(self):
         while True:
             for event in pg.event.get():
-                
+
                 # Quit the game
                 if event == pg.QUIT:
                     pg.quit()
