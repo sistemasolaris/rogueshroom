@@ -1,30 +1,38 @@
+import sys
 import pygame as pg
-import config as conf
+from config import *
+from src.level import Level
 from src.characters.player import Player
 
-def main():
-    pg.init()
-    screen = pg.display.set_mode((conf.WIDTH, conf.HEIGHT))
-    clock = pg.time.Clock()
-    running = True
+class Game:
+    def __init__(self):
+        pg.init()
 
-    # Sprite groups
-    all_sprites = pg.sprite.Group()
+        # Create display screen
+        self.screen = pg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+        pg.display.set_caption("ROGUESHROOM")
 
-    # Sprites
-    player = Player((640, 360), all_sprites)
+        # Create game clock
+        self.clock = pg.time.Clock()
 
-    while running:
-        # Poll for events
-        for event in pg.event.get():
-            if event == pg.QUIT:
-                running = False
-        
-        screen.fill("purple")
-        all_sprites.draw(screen)
-        all_sprites.update()
-        pg.display.flip()
-        clock.tick(conf.FPS)
+        # The level the game is going to run
+        self.level = Level()
+
+    def run(self):
+        while True:
+            for event in pg.event.get():
+                
+                # Quit the game
+                if event == pg.QUIT:
+                    pg.quit()
+                    sys.exit()
+            
+            # Deltatime, used for framerate independence
+            dt = self.clock.tick() / 1000
+
+            self.level.run(dt)
+            pg.display.update()
 
 if __name__ == "__main__":
-    main()
+    game = Game()
+    game.run()
