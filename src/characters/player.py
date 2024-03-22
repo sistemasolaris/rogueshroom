@@ -12,9 +12,16 @@ class Player(pg.sprite.Sprite):
 
         # Movement
         self.direction = pg.math.Vector2()
+        self.pos = pg.math.Vector2(self.rect.center)
+        self.speed = 200
 
     def update(self, dt):
         self.input()
+        self.move(dt)
+    
+    def move(self, dt):
+        self.pos += self.direction * self.speed * dt
+        self.rect.center = self.pos
 
     def input(self):
         keys = pg.key.get_pressed()
@@ -32,5 +39,3 @@ class Player(pg.sprite.Sprite):
             self.direction.x = 1
         else:
             self.direction.x = 0
-
-        print(self.direction)
