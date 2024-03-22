@@ -22,7 +22,11 @@ class Player(pg.sprite.Sprite):
         self.move(dt)
     
     def move(self, dt):
-        
+
+        # Normalize direction vector
+        if self.direction.magnitude() > 0:
+            self.direction = self.direction.normalize()
+
         # Calculate new position
         self.pos += self.direction * self.speed * dt
         self.rect.center = self.pos
