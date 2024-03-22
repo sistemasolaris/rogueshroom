@@ -22,7 +22,7 @@ class Game:
             for event in pg.event.get():
 
                 # Quit the game
-                if event == pg.QUIT:
+                if event.type == pg.QUIT:
                     pg.quit()
                     sys.exit()
             
