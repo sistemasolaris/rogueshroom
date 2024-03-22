@@ -4,28 +4,35 @@ from config import *
 
 class Player(pg.sprite.Sprite):
     def __init__(self, pos, group):
+
         super().__init__(group)
 
-        # Sprite
+        # Sprite attributes
         self.image = pg.image.load(os.path.join(GRAPHICS_DIR, "characters", "player-character-prototype.png")).convert_alpha()
         self.rect = self.image.get_rect(center = pos)
 
-        # Movement
+        # Movement attributes
         self.direction = pg.math.Vector2()
         self.pos = pg.math.Vector2(self.rect.center)
         self.speed = 200
 
     def update(self, dt):
+
         self.input()
         self.move(dt)
     
     def move(self, dt):
+        
+        # Calculate new position
         self.pos += self.direction * self.speed * dt
         self.rect.center = self.pos
 
     def input(self):
+
+        # Get keys currently being pressed
         keys = pg.key.get_pressed()
 
+        # Translate movement key presses to movement directions
         if keys[pg.K_UP] or keys[pg.K_w]:
             self.direction.y = -1
         elif keys[pg.K_DOWN] or keys[pg.K_s]:
