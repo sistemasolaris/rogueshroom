@@ -8,7 +8,10 @@ class Player(pg.sprite.Sprite):
         super().__init__(group)
 
         # Sprite attributes
-        self.image = pg.image.load(os.path.join(GRAPHICS_DIR, "characters", "player-character-prototype.png")).convert_alpha()
+        self.image = pg.transform.scale(
+                pg.image.load(os.path.join(GRAPHICS_DIR, "characters", "player-character-prototype.png")).convert_alpha(),
+                (32, 64)
+            )
         self.rect = self.image.get_rect(center = pos)
 
         # Movement attributes
