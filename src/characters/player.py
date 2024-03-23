@@ -17,6 +17,9 @@ class Player(pg.sprite.Sprite):
         # Movement attributes
         self.direction = pg.math.Vector2()
         self.pos = pg.math.Vector2(self.rect.center)
+
+        # Stat attributes
+        self.health = 3
         self.speed = 200
 
     def update(self, dt):
@@ -53,3 +56,6 @@ class Player(pg.sprite.Sprite):
             self.direction.x = 1
         else:
             self.direction.x = 0
+    
+    def take_damage(self):
+        self.health -= 1
