@@ -10,7 +10,7 @@ class Player(pg.sprite.Sprite):
         # Sprite attributes
         self.image = pg.transform.scale(
                 pg.image.load(os.path.join(GRAPHICS_DIR, "characters", "player-character-prototype.png")).convert_alpha(),
-                (32, 64)
+                (16 * SCALE_FACTOR, 32 * SCALE_FACTOR)
             )
         self.rect = self.image.get_rect(center = pos)
 
