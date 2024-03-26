@@ -10,8 +10,10 @@ class Player(pg.sprite.Sprite):
 
         # Sprite attributes
         self.animations = self.import_assets()
+        self.status = "down-idle"
+        self.frame = 0
         self.image = pg.transform.scale(
-                self.animations["down-idle"][0],
+                self.animations[self.status][self.frame],
                 (16 * SCALE_FACTOR, 24 * SCALE_FACTOR)
             )
         self.rect = self.image.get_rect(center = pos)
