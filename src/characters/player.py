@@ -74,15 +74,19 @@ class Player(pg.sprite.Sprite):
         # Translate movement key presses to movement directions
         if keys[pg.K_UP] or keys[pg.K_w]:
             self.direction.y = -1
+            self.status = "up-walk"
         elif keys[pg.K_DOWN] or keys[pg.K_s]:
             self.direction.y = 1
+            self.status = "down-walk"
         else:
             self.direction.y = 0
 
         if keys[pg.K_LEFT] or keys[pg.K_a]:
             self.direction.x = -1
+            self.status = "left-walk"
         elif keys[pg.K_RIGHT] or keys[pg.K_d]:
             self.direction.x = 1
+            self.status = "right-walk"
         else:
             self.direction.x = 0
     
