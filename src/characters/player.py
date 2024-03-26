@@ -38,11 +38,23 @@ class Player(pg.sprite.Sprite):
             animations[animation] = sprite_sheet.get_strip((0, 0, 16, 24), sprite_sheet.sheet.get_width() // 16, BLACK)
 
         return animations
+    
+    def animate(self, dt):
+        self.frame += 5 * dt
+
+        if self.frame > len(self.animations[self.status]):
+            self.frame = 0
+        
+        self.image = pg.transform.scale(
+                self.animations[self.status][int(self.frame)],
+                (16 * SCALE_FACTOR, 24 * SCALE_FACTOR)
+            )
 
     def update(self, dt):
 
         self.input()
         self.move(dt)
+        self.animate(dt)
     
     def move(self, dt):
 
