@@ -35,7 +35,7 @@ class Player(pg.sprite.Sprite):
         for animation in animations.keys():
             path = os.path.join(GRAPHICS_DIR, "characters", "shroomy", animation, f"{animation}.png")
             sprite_sheet = SpriteSheet(path)
-            animations[animation] = sprite_sheet.get_strip((0, 0, 16, 24), 4, BLACK)
+            animations[animation] = sprite_sheet.get_strip((0, 0, 16, 24), sprite_sheet.sheet.get_width() // 16, BLACK)
 
         return animations
 
