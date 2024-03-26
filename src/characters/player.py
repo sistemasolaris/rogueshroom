@@ -1,5 +1,6 @@
 import os
 import pygame as pg
+from src.utils.spritesheet import SpriteSheet
 from config import *
 
 class Player(pg.sprite.Sprite):
@@ -8,6 +9,7 @@ class Player(pg.sprite.Sprite):
         super().__init__(group)
 
         # Sprite attributes
+        self.animations = self.import_assets()
         self.image = pg.transform.scale(
                 pg.image.load(os.path.join(GRAPHICS_DIR, "characters", "player-character-prototype.png")).convert_alpha(),
                 (16 * SCALE_FACTOR, 32 * SCALE_FACTOR)
@@ -21,6 +23,16 @@ class Player(pg.sprite.Sprite):
         # Stat attributes
         self.health = 3
         self.speed = 200
+
+    def import_assets(self):
+        animations = {"up-walk": None, "left-walk": None, "right-walk": None, "down-walk": None}
+
+        for animation in animations.keys():
+            path = os.path.join(GRAPHICS_DIR, "characters", "shroomy", animation, f"{animation}.png")
+            sprite_sheet = SpriteSheet(path)
+            animations[animation] = sprite_sheet.get_strip((0, 0, 16, 24), 4, BLACK)
+
+        return animations
 
     def update(self, dt):
 
