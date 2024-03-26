@@ -67,3 +67,25 @@ class SpriteSheet():
         """
 
         return [self.get_image_at(rect, colorkey) for rect in rectangles]
+    
+    def get_strip(self, rectangle: pg.Rect, image_count: int, colorkey: pg.Color = None):
+        """
+        Gets a continuous strip of sprites from the sprite sheet
+
+        Parameters
+        ----------
+        rectangle: pygame.Rect
+            The location of the first sprite to be returned, in the format of (x, y, width, height)
+        image_count: int
+            The amount of images in the strip
+        colorkey: pygame.Color, optional
+            The color, in (R, G, B), to be made transparent in the sprites, defaults to None
+
+        Returns
+        -------
+        list of pygame.Surface
+            A list of the requested sprites
+        """
+
+        rects = [(rectangle[0] + rectangle[2]*x, rectangle[1], rectangle[2], rectangle[3]) for x in range(image_count)]
+        return self.get_images_at(rects, colorkey)
