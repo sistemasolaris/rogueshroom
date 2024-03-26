@@ -49,7 +49,7 @@ class SpriteSheet():
         
         return image
     
-    def get_images_at(self, rectangles: list[pg.Rect], colorkey: pg.color = None):
+    def get_images_at(self, rectangles: list[pg.Rect], colorkey: pg.Color = None):
         """
         Get multiple sprites from sprite sheet as a list
 
