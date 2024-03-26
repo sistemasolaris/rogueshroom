@@ -11,8 +11,8 @@ class Player(pg.sprite.Sprite):
         # Sprite attributes
         self.animations = self.import_assets()
         self.image = pg.transform.scale(
-                pg.image.load(os.path.join(GRAPHICS_DIR, "characters", "player-character-prototype.png")).convert_alpha(),
-                (16 * SCALE_FACTOR, 32 * SCALE_FACTOR)
+                self.animations["down-idle"][0],
+                (16 * SCALE_FACTOR, 24 * SCALE_FACTOR)
             )
         self.rect = self.image.get_rect(center = pos)
 
@@ -25,7 +25,10 @@ class Player(pg.sprite.Sprite):
         self.speed = 200
 
     def import_assets(self):
-        animations = {"up-walk": None, "left-walk": None, "right-walk": None, "down-walk": None}
+        animations = {
+            "up-idle": None, "left-idle": None, "right-idle": None, "down-idle": None,
+            "up-walk": None, "left-walk": None, "right-walk": None, "down-walk": None
+            }
 
         for animation in animations.keys():
             path = os.path.join(GRAPHICS_DIR, "characters", "shroomy", animation, f"{animation}.png")
